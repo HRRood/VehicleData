@@ -1,0 +1,47 @@
+.navbar {
+  background-color: #212121;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  height: 100px;
+}
+
+.logoImage {
+  width: 50px;
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  margin-left: auto;
+}
+
+.navLinks li {
+  margin-left: 20px;
+}
+
+.navLinks a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.navLinks a:hover {
+  color: #ffd700; /* Gold color similar to Star Wars logo */
+}
+
+.logo {
+  margin-right: 20px;
+  height: 100%;
+  width: 300px;
+  position: relative;
+  object-fit: contain;
+  padding: 10px 20px;
+}
+
+.logo img {
+  width: auto !important;
+}

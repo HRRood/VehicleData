@@ -1,5 +1,3 @@
-"use client";
-
 import { BaseTextFieldProps, FormControl, TextField } from "@mui/material";
 import { FieldError, FieldErrors, useFormContext } from "react-hook-form";
 import { styled } from "styled-components";

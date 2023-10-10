@@ -21,7 +21,6 @@
 }
 
 .navLinks a {
-  color: #fff;
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
@@ -29,9 +28,7 @@
   transition: all 0.3s ease;
 }
 
-.navLinks a:hover {
-  color: #ffd700; /* Gold color similar to Star Wars logo */
-}
+
 
 .logo {
   margin-right: 20px;

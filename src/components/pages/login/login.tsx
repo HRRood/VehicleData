@@ -1,11 +1,10 @@
 "use client";
 
-import { TextInput } from "@/components/form/textInput/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@mui/material";
-import { signIn } from "next-auth/react";
 import { useForm, FormProvider } from "react-hook-form";
 import { z } from "zod";
+import { Form } from "./Form";
+import { Box, Container } from "@mui/material";
 
 const UserDataValidation = z.object({
   email: z.string().email(),
@@ -17,25 +16,24 @@ export const Login = () => {
     resolver: zodResolver(UserDataValidation),
   });
 
-  const onSubmit = async (data: any) => {
-    const { email, password } = data;
-    await signIn("credentials", {
-      redirect: true,
-      callbackUrl: "/",
-      email,
-      password,
-    });
-  };
   return (
-    <div>
-      <h1>Login</h1>
-      <FormProvider {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <TextInput type="email" label="Email" id="email" name="email" />
-          <TextInput type="password" label="Password" id="password" name="password" />
-          <Button type="submit">Login</Button>
-        </form>
-      </FormProvider>
-    </div>
+    <Container
+      sx={{
+        margin: "20px auto",
+      }}
+    >
+      <Box
+        sx={{
+          backgroundColor: "background.paper",
+          padding: "2rem",
+          borderRadius: "1rem",
+        }}
+      >
+        <h1>Login</h1>
+        <FormProvider {...form}>
+          <Form />
+        </FormProvider>
+      </Box>
+    </Container>
   );
 };

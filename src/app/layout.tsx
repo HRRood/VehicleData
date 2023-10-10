@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeHOC } from "./themeHOC";
 import { Navbar } from "@/components/layout/navbar/navbar";
+import { AuthWrapper } from "./AuthWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,12 +16,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeHOC>
-          <div>
+        <AuthWrapper>
+          <ThemeHOC>
             <Navbar />
-            {children}
-          </div>
-        </ThemeHOC>
+            <main>{children}</main>
+          </ThemeHOC>
+        </AuthWrapper>
       </body>
     </html>
   );

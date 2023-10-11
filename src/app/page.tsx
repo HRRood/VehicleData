@@ -1,12 +1,17 @@
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
 import { redirect } from "next/navigation";
+import { VehiclesWrapper } from "@/components/vehicles/VehiclesWrapper";
 
 export default async function Home() {
   const session = await getServerSession(options);
 
-  if (!session) {
+  if (!session || !session.user) {
     redirect("/login");
   }
-  return <div>Vehicle Data</div>;
+  return (
+    <div style={{ margin: "20px" }}>
+      <VehiclesWrapper />
+    </div>
+  );
 }

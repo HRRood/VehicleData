@@ -8,9 +8,52 @@ datasource db {
 }
 
 model Users {
-  Id        Int    @id @default(autoincrement())
-  Email     String @db.VarChar(100)
-  Password  String @db.VarChar(255)
-  FirstName String @db.VarChar(255)
-  LastName  String @db.VarChar(255)
+  Id        Int        @id @default(autoincrement())
+  Email     String     @db.VarChar(100)
+  Password  String     @db.VarChar(255)
+  FirstName String     @db.VarChar(255)
+  LastName  String     @db.VarChar(255)
+  Vehicles  Vehicles[]
+}
+
+model Fillups {
+  Id             Int      @id @default(autoincrement())
+  VehicleId      Int
+  Date           String   @db.VarChar(100)
+  DrivenKm       Float    @db.Float
+  LitersFilled   Float    @db.Float
+  Costs          Float    @db.Float
+  FuelEfficiency String   @db.VarChar(100)
+  Location       String   @db.VarChar(255)
+  Company        String   @db.VarChar(100)
+  Vehicles       Vehicles @relation(fields: [VehicleId], references: [Id], onDelete: Cascade, map: "Fillups_FK")
+
+  @@index([VehicleId], map: "Fillups_FK")
+}
+
+model Trips {
+  Id            Int      @id @default(autoincrement())
+  VehicleId     Int
+  StartLocation String   @db.VarChar(255)
+  EndLocation   String   @db.VarChar(255)
+  DrivenKm      Float    @db.Float
+  Vehicles      Vehicles @relation(fields: [VehicleId], references: [Id], onDelete: Cascade, map: "Trips_FK")
+
+  @@index([VehicleId], map: "Trips_FK")
+}
+
+model Vehicles {
+  Id           Int       @id @default(autoincrement())
+  UserId       Int
+  Make         String    @db.VarChar(100)
+  Model        String    @db.VarChar(100)
+  Year         Int
+  LicensePlate String    @unique(map: "Vehicles_UN") @db.VarChar(10)
+  Image        String?   @db.Text
+  Odo          Float?    @db.Float
+  Fillups      Fillups[]
+  Trips        Trips[]
+  Users        Users     @relation(fields: [UserId], references: [Id], onDelete: Cascade, map: "Vehicles_FK")
+
+  @@index([UserId], map: "Vehicles_FK")
 }

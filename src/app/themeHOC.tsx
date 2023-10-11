@@ -15,6 +15,7 @@ const colors = {
     primary: "#FFB6C1",
     secondary: "#AEDFF7",
     text: "#333333",
+    success: "#8CEBA7",
   },
   dark: {
     background: "#121212",
@@ -22,6 +23,7 @@ const colors = {
     primary: "#FF6B81",
     secondary: "#6BA5E7",
     text: "#EDEDED",
+    success: "#68A77E",
   },
 };
 
@@ -38,6 +40,10 @@ export const ThemeHOC = ({ children }: ThemeHOCProps) => {
         },
         primary: {
           main: colors[mode].primary,
+        },
+        success: {
+          main: colors[mode].success,
+          contrastText: colors[mode].text,
         },
         text: {
           primary: colors[mode].text,

@@ -27,7 +27,7 @@ export const TextInput = ({ name, label, ...props }: TextInputProps) => {
   const { register, formState } = useFormContext();
   const error = getNestedError(formState.errors, name);
   return (
-    <div style={{ padding: "10px 0" }}>
+    <div style={{ margin: "5px 0" }}>
       <FormControl fullWidth>
         <TextField fullWidth label={label} {...register(name)} variant="outlined" error={error !== undefined} helperText={error?.message} {...props} />
       </FormControl>

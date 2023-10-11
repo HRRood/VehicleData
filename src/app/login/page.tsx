@@ -1,4 +1,4 @@
-import { Login } from "@/components/pages/login/login";
+import { Login } from "@/frontend/components/pages/login/login";
 import { getServerSession } from "next-auth";
 import { options } from "../api/auth/[...nextauth]/options";
 import { redirect } from "next/navigation";

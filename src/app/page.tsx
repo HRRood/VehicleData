@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
 import { redirect } from "next/navigation";
-import { VehiclesWrapper } from "@/components/vehicles/VehiclesWrapper";
+import { VehiclesWrapper } from "@/frontend/components/vehicles/VehiclesWrapper";
 
 export default async function Home() {
   const session = await getServerSession(options);

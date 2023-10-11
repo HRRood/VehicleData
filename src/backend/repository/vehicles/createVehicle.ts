@@ -1,5 +1,5 @@
 import { options } from "@/app/api/auth/[...nextauth]/options";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/backend/lib/prisma";
 import { getServerSession } from "next-auth";
 import { FindUserByEmail } from "../users/findUserByEmail";
 

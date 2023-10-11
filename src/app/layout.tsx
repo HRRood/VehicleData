@@ -1,9 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeHOC } from "./themeHOC";
-import { Navbar } from "@/components/layout/navbar/navbar";
-import { AuthWrapper } from "./AuthWrapper";
+import { ThemeHOC } from "../frontend/wrappers/themeHOC";
+import { Navbar } from "@/frontend/components/layout/navbar/navbar";
+import { AuthWrapper } from "../frontend/wrappers/AuthWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 

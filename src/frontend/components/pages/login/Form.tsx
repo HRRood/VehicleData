@@ -1,6 +1,6 @@
 "use client";
 
-import { TextInput } from "@/components/form/textInput/TextInput";
+import { TextInput } from "@/frontend/components/form/textInput/TextInput";
 import { Button } from "@mui/material";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";

@@ -4,7 +4,7 @@ import { createDefaultResponse } from "@/backend/utils/createDefaultResponse";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/backend/lib/prisma";
 
 export async function GET() {
   const session = await getServerSession();

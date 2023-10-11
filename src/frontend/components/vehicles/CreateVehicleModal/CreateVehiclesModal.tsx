@@ -2,8 +2,8 @@
 import { mutate } from "swr";
 import { z } from "zod";
 
-import { CreateDialog } from "@/components/CreateDialog/CreateDialog";
-import { TextInput } from "@/components/form/textInput/TextInput";
+import { CreateDialog } from "@/frontend/components/CreateDialog/CreateDialog";
+import { TextInput } from "@/frontend/components/form/textInput/TextInput";
 
 import styles from "./CreateVehiclesModal.module.css";
 

@@ -13,7 +13,6 @@ export const Login = () => {
       <Button
         variant="text"
         onClick={() => {
-          console.log("logout");
           signOut({ redirect: true, callbackUrl: "/" });
         }}
       >

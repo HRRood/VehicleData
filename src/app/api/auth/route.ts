@@ -1,5 +1,31 @@
+import { FindUserByEmail } from "@/backend/repository/users/findUserByEmail";
+import { createDefaultResponse } from "@/backend/utils/createDefaultResponse";
 import { NextResponse } from "next/server";
+import bcrypt from "bcrypt";
+
+interface PostBodyAuth {
+  email: string;
+  password: string;
+}
+
+async function comparePassword(password: string, hashedPassword: string) {
+  return bcrypt.compare(password, hashedPassword);
+}
 
 export async function POST(request: Request) {
-  return NextResponse.json({ username: "test", email: "test@test.com", name: "Test User" });
+  const { email, password }: PostBodyAuth = await request.json();
+
+  const existingUser = await FindUserByEmail(email);
+
+  if (!existingUser) {
+    return NextResponse.json(createDefaultResponse({}, false, "Incorrect data"));
+  }
+
+  const passwordMatch = await comparePassword(password, existingUser.Password);
+
+  if (!passwordMatch) {
+    return NextResponse.json(createDefaultResponse({}, false, "Incorrect data"));
+  }
+
+  return NextResponse.json(createDefaultResponse({ email: existingUser.Email, name: `${existingUser.FirstName} ${existingUser.LastName}` }));
 }

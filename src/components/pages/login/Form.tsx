@@ -1,19 +1,32 @@
+"use client";
+
 import { TextInput } from "@/components/form/textInput/TextInput";
 import { Button } from "@mui/material";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 
 export const Form = () => {
-  const { handleSubmit } = useFormContext();
+  const router = useRouter();
+  const { handleSubmit, setError, resetField, setFocus } = useFormContext();
 
   const onSubmit = async (data: any) => {
     const { email, password } = data;
-    await signIn("credentials", {
-      redirect: true,
-      callbackUrl: "/",
+    const result = await signIn("credentials", {
+      redirect: false,
       email,
       password,
     });
+    if (!result?.ok) {
+      setError("email", {
+        message: "Wrong credentials",
+      });
+      resetField("password");
+      setFocus("password");
+      return;
+    }
+
+    router.push("/");
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

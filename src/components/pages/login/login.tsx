@@ -8,7 +8,7 @@ import { Box, Container } from "@mui/material";
 
 const UserDataValidation = z.object({
   email: z.string().email(),
-  password: z.string().min(8),
+  password: z.string(),
 });
 
 export const Login = () => {

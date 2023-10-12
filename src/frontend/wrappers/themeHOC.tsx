@@ -8,7 +8,7 @@ interface ThemeHOCProps {
   children: React.ReactNode;
 }
 
-const colors = {
+export const THEME_COLORS = {
   light: {
     background: "#f0f0f0",
     backgroundPaper: "#fff",
@@ -35,18 +35,18 @@ export const ThemeHOC = ({ children }: ThemeHOCProps) => {
       palette: {
         mode,
         background: {
-          default: colors[mode].background,
-          paper: colors[mode].backgroundPaper,
+          default: THEME_COLORS[mode].background,
+          paper: THEME_COLORS[mode].backgroundPaper,
         },
         primary: {
-          main: colors[mode].primary,
+          main: THEME_COLORS[mode].primary,
         },
         success: {
-          main: colors[mode].success,
-          contrastText: colors[mode].text,
+          main: THEME_COLORS[mode].success,
+          contrastText: THEME_COLORS[mode].text,
         },
         text: {
-          primary: colors[mode].text,
+          primary: THEME_COLORS[mode].text,
         },
       },
     });

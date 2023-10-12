@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { ThemeHOC } from "../frontend/wrappers/themeHOC";
 import { Navbar } from "@/frontend/components/layout/navbar/navbar";
 import { AuthWrapper } from "../frontend/wrappers/AuthWrapper";
+import { JotaiWrapper } from "@/frontend/wrappers/JotaiWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,12 +17,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthWrapper>
-          <ThemeHOC>
-            <Navbar />
-            <main>{children}</main>
-          </ThemeHOC>
-        </AuthWrapper>
+        <JotaiWrapper>
+          <AuthWrapper>
+            <ThemeHOC>
+              <Navbar />
+              <main>{children}</main>
+            </ThemeHOC>
+          </AuthWrapper>
+        </JotaiWrapper>
       </body>
     </html>
   );

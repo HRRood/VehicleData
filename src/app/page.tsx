@@ -10,7 +10,7 @@ export default async function Home() {
     redirect("/login");
   }
   return (
-    <div style={{ maxWidth: "1200px", padding: "20px", margin: "0 auto" }}>
+    <div style={{ maxWidth: "1300px", padding: "20px", margin: "0 auto" }}>
       <VehiclesWrapper />
     </div>
   );

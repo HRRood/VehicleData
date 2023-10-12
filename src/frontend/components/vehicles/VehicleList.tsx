@@ -35,7 +35,7 @@ export const VehicleList = ({ serverData }: VehicleListProps) => {
         onClick={() => setVehicle(vehicle)}
         variant="elevation"
         key={vehicle.Id}
-        sx={{ cursor: "pointer", width: 300, border: 1, borderColor: isSelected ? "primary.main" : "transparent" }}
+        sx={{ cursor: "pointer", width: 300, border: 2, borderColor: isSelected ? "secondary.main" : "transparent" }}
       >
         <CardMedia component="img" height="250" image={vehicle.Image || ""} alt="vehicle" />
         <CardContent>
@@ -48,14 +48,8 @@ export const VehicleList = ({ serverData }: VehicleListProps) => {
           <Typography variant="subtitle1">Bouwjaar: {vehicle.Year}</Typography>
           <Typography>Total KM: {vehicle.Odo}</Typography>
         </CardContent>
-        {/* <p style={{ fontSize: "20px", fontWeight: 800 }}>
-          {vehicle.Make} {vehicle.Model}
-        </p>
-        <p style={{ background: "#eda909", color: "black", textAlign: "center", fontWeight: 800 }}>{vehicle.LicensePlate}</p>
-        <p>Build year: {vehicle.Year}</p>
-        <p>Odo: {vehicle.Odo}</p> */}
       </Card>
     );
   });
-  return <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>{vehicles}</div>;
+  return <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>{vehicles}</div>;
 };

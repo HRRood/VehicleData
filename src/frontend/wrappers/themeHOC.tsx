@@ -10,7 +10,7 @@ interface ThemeHOCProps {
 
 export const THEME_COLORS = {
   light: {
-    background: "#f0f0f0",
+    background: "#f7f6ff",
     backgroundPaper: "#fff",
     primary: "#FFB6C1",
     secondary: "#AEDFF7",
@@ -18,8 +18,8 @@ export const THEME_COLORS = {
     success: "#8CEBA7",
   },
   dark: {
-    background: "#121212",
-    backgroundPaper: "#1b1b1b",
+    background: "#010109",
+    backgroundPaper: "#0b030a",
     primary: "#FF6B81",
     secondary: "#6BA5E7",
     text: "#EDEDED",

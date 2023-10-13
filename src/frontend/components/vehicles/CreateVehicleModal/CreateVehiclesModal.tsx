@@ -7,7 +7,7 @@ import { TextInput } from "@/frontend/components/form/textInput/TextInput";
 
 import styles from "./CreateVehiclesModal.module.css";
 
-const CharacterDataValidation = z.object({
+const VehicleDataValidation = z.object({
   make: z.string().min(1),
   model: z.string().min(1),
   year: z.coerce
@@ -18,8 +18,8 @@ const CharacterDataValidation = z.object({
   odo: z.coerce.number().optional(),
 });
 
-export const CreateCharacterModal = () => {
-  const onNewCharacterSubmit = async (data: any, callback: () => void) => {
+export const CreateVehicleModal = () => {
+  const onNewVehicleSubmit = async (data: any, callback: () => void) => {
     fetch("/api/vehicles", {
       method: "POST",
       body: JSON.stringify(data),
@@ -33,7 +33,13 @@ export const CreateCharacterModal = () => {
       });
   };
   return (
-    <CreateDialog DataValidation={CharacterDataValidation} title="Create new character" onSubmit={onNewCharacterSubmit}>
+    <CreateDialog
+      DataValidation={VehicleDataValidation}
+      buttonColor="success"
+      buttonVariant="contained"
+      title="Create new vehicle"
+      onSubmit={onNewVehicleSubmit}
+    >
       <div className={styles.fields_group}>
         <TextInput id="make" name="make" label="Make" />
       </div>

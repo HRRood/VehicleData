@@ -20,9 +20,20 @@ interface CreateDialogProps {
   onSubmit: (_data: any, _callback: () => void) => void;
   title: string;
   children: React.ReactNode;
+  buttonVariant?: "text" | "outlined" | "contained" | undefined;
+  buttonColor?: "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning" | undefined;
+  buttonText?: string;
 }
 
-export const CreateDialog = ({ DataValidation, onSubmit, title, children }: CreateDialogProps) => {
+export const CreateDialog = ({
+  DataValidation,
+  onSubmit,
+  title,
+  children,
+  buttonVariant = "outlined",
+  buttonColor = "primary",
+  buttonText = "New",
+}: CreateDialogProps) => {
   const [open, setOpen] = useState(false);
   const form = useForm({
     resolver: zodResolver(DataValidation),
@@ -31,8 +42,8 @@ export const CreateDialog = ({ DataValidation, onSubmit, title, children }: Crea
   const handleClose = () => setOpen(false);
   return (
     <div>
-      <Button variant="contained" color="success" type="button" onClick={() => setOpen(true)}>
-        New
+      <Button variant={buttonVariant} color={buttonColor} type="button" onClick={() => setOpen(true)}>
+        {buttonText}
       </Button>
       <Dialog open={open} TransitionComponent={Transition} maxWidth="md" fullWidth onClose={handleClose} aria-describedby="alert-dialog-slide-description">
         <FormProvider {...form}>
@@ -46,8 +57,12 @@ export const CreateDialog = ({ DataValidation, onSubmit, title, children }: Crea
             <DialogTitle>{title}</DialogTitle>
             <DialogContent>{children}</DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button type="submit">Submit</Button>
+              <Button variant="outlined" color="error" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button variant="contained" type="submit">
+                Submit
+              </Button>
             </DialogActions>
           </form>
         </FormProvider>

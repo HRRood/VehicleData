@@ -1,0 +1,9 @@
+.fields_group {
+    display: flex;
+    gap: 20px;
+    /* width: 50vw; */
+}
+
+.fields_group > div {
+    flex: 1;
+}

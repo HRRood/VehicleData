@@ -2,7 +2,7 @@ import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
 import { Card, CardMedia, CardContent, Typography, Button } from "@mui/material";
 import { Vehicles } from "@prisma/client";
 import { useAtom } from "jotai";
-import { AddFuelModal } from "./addFuelModal/addFuelModal";
+import { AddFillUpModal } from "./addFillUpModal/addFillUpModal";
 
 interface VehicleCardProps {
   vehicle: Vehicles;
@@ -35,7 +35,7 @@ export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
         <Typography>Total KM: {vehicle.Odo}</Typography>
 
         <div style={{ margin: "5px 0", display: "flex", justifyContent: "space-between" }}>
-          <AddFuelModal />
+          <AddFillUpModal />
           <Button variant="outlined" color="secondary">
             Add trip
           </Button>

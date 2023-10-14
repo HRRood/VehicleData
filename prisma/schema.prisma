@@ -19,13 +19,13 @@ model Users {
 model Fillups {
   Id             Int      @id @default(autoincrement())
   VehicleId      Int
-  Date           String   @db.VarChar(100)
+  Date           DateTime @default(now()) @db.DateTime(0)
   DrivenKm       Float    @db.Float
   LitersFilled   Float    @db.Float
   Costs          Float    @db.Float
-  FuelEfficiency String   @db.VarChar(100)
+  FuelEfficiency Float    @db.Float
   Location       String   @db.VarChar(255)
-  Company        String   @db.VarChar(100)
+  StationName    String   @db.VarChar(100)
   Vehicles       Vehicles @relation(fields: [VehicleId], references: [Id], onDelete: Cascade, map: "Fillups_FK")
 
   @@index([VehicleId], map: "Fillups_FK")

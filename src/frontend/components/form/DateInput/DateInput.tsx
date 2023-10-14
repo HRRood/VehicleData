@@ -3,7 +3,7 @@
 import { FormControl } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
 import { getNestedError } from "../textInput/TextInput";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import nl from "date-fns/locale/nl";
 
@@ -23,7 +23,7 @@ export const DateInput = ({ name, label, ...props }: DateInputProps) => {
           {...register(name)}
           render={({ field: { onChange, ...restField } }) => (
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={nl}>
-              <DatePicker
+              <DateTimePicker
                 label={label}
                 onChange={(event) => {
                   onChange(event);

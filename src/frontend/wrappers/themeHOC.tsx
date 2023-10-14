@@ -12,7 +12,7 @@ export const THEME_COLORS = {
   light: {
     background: "#f7f6ff",
     backgroundPaper: "#fff",
-    primary: "#FFB6C1",
+    primary: "#FF8A99",
     secondary: "#AEDFF7",
     text: "#333333",
     success: "#8CEBA7",

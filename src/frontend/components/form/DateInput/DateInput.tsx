@@ -17,7 +17,7 @@ export const DateInput = ({ name, label, ...props }: DateInputProps) => {
   const error = getNestedError(formState.errors, name);
 
   return (
-    <div>
+    <div style={{ margin: "5px 0" }}>
       <FormControl fullWidth>
         <Controller
           {...register(name)}

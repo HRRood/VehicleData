@@ -1,15 +1,18 @@
 import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
-import { Card, CardMedia, CardContent, Typography, Button } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import { Vehicles } from "@prisma/client";
 import { useAtom } from "jotai";
 import { AddFillUpModal } from "./addFillUpModal/addFillUpModal";
+import { AddTripModal } from "./addTripModal/addTripModal";
 
 interface VehicleCardProps {
   vehicle: Vehicles;
+  index: number;
 }
 
-export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
+export const VehicleCard = ({ vehicle, index }: VehicleCardProps) => {
   const [selectedVehicle, setVehicle] = useAtom(SelectedVehicleAtom);
+  if (selectedVehicle === null && index === 0) setVehicle(vehicle);
   const isSelected = selectedVehicle?.Id === vehicle.Id;
 
   return (
@@ -36,9 +39,7 @@ export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
 
         <div style={{ margin: "5px 0", display: "flex", justifyContent: "space-between" }}>
           <AddFillUpModal />
-          <Button variant="outlined" color="secondary">
-            Add trip
-          </Button>
+          <AddTripModal />
         </div>
       </CardContent>
     </Card>

@@ -37,6 +37,8 @@ model Trips {
   StartLocation String   @db.VarChar(255)
   EndLocation   String   @db.VarChar(255)
   DrivenKm      Float    @db.Float
+  StartDateTime DateTime @db.DateTime(0)
+  EndDateTime   DateTime @db.DateTime(0)
   Vehicles      Vehicles @relation(fields: [VehicleId], references: [Id], onDelete: Cascade, map: "Trips_FK")
 
   @@index([VehicleId], map: "Trips_FK")

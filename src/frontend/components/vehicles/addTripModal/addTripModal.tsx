@@ -22,7 +22,7 @@ export const AddTripModal = () => {
   const [selectedVehicle] = useAtom(SelectedVehicleAtom);
 
   const onSubmit = async (data: any, callback: () => void) => {
-    fetch("/api/trip", {
+    fetch("/api/trips", {
       method: "POST",
       body: JSON.stringify({ ...data, vehicleId: selectedVehicle?.Id }),
     })

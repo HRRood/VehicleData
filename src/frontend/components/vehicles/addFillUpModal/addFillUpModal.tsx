@@ -23,7 +23,7 @@ export const AddFillUpModal = () => {
   const [selectedVehicle] = useAtom(SelectedVehicleAtom);
 
   const onSubmit = async (data: any, callback: () => void) => {
-    fetch("/api/fillup", {
+    fetch("/api/fillups", {
       method: "POST",
       body: JSON.stringify({ ...data, vehicleId: selectedVehicle?.Id }),
     })

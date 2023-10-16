@@ -9,6 +9,7 @@ import styles from "./AddTripModal.module.css";
 import { DateInput } from "../../form/DateInput/DateInput";
 import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
 import { useAtom } from "jotai";
+import { api } from "@/frontend/api/api";
 
 const TripDataValidation = z.object({
   startLocation: z.string().min(1),
@@ -22,17 +23,14 @@ export const AddTripModal = () => {
   const [selectedVehicle] = useAtom(SelectedVehicleAtom);
 
   const onSubmit = async (data: any, callback: () => void) => {
-    fetch("/api/trips", {
-      method: "POST",
-      body: JSON.stringify({ ...data, vehicleId: selectedVehicle?.Id }),
-    })
-      .then(() => {
+    api.post("/api/trips", { ...data, vehicleId: selectedVehicle?.Id }).then((res) => {
+      if (res.success) {
         mutate((key) => typeof key === "string");
         callback();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      } else {
+        console.error(res.message);
+      }
+    });
   };
   return (
     <CreateDialog DataValidation={TripDataValidation} buttonText="Add trip" buttonColor="secondary" title="Add new trip" onSubmit={onSubmit}>

@@ -38,7 +38,6 @@ export async function POST(request: Request) {
     return NextResponse.json(createDefaultResponse({}, false, "Vehicle not found"));
   }
 
-  console.log(drivenKm, startDateTime, endDateTime, startLocation, endLocation, vehicleId);
   if (!drivenKm || !startDateTime || !endDateTime || !startLocation || !endLocation) {
     return NextResponse.json(createDefaultResponse({}, false, "Missing data"));
   }

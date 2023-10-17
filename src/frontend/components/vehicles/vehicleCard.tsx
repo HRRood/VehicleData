@@ -7,21 +7,22 @@ import { AddTripModal } from "./addTripModal/addTripModal";
 
 interface VehicleCardProps {
   vehicle: Vehicles;
-  index: number;
 }
 
-export const VehicleCard = ({ vehicle, index }: VehicleCardProps) => {
+export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
   const [selectedVehicle, setVehicle] = useAtom(SelectedVehicleAtom);
-  if (selectedVehicle === null && index === 0) setVehicle(vehicle);
+
   const isSelected = selectedVehicle?.Id === vehicle.Id;
+
+  const handleClick = (e: any) => {
+    // @ts-ignore
+    if (e.target.tagName === "BUTTON") return;
+    setVehicle(vehicle);
+  };
 
   return (
     <Card
-      onClick={(e) => {
-        // @ts-ignore
-        if (e.target.tagName === "BUTTON") return;
-        setVehicle(vehicle);
-      }}
+      onClick={handleClick}
       variant="elevation"
       key={vehicle.Id}
       sx={{ cursor: "pointer", width: 300, border: 2, borderColor: isSelected ? "secondary.main" : "transparent" }}

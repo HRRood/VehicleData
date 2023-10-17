@@ -39,6 +39,7 @@ export const CreateDialog = ({
     resolver: zodResolver(DataValidation),
   });
 
+  const { reset } = form;
   const handleClose = () => setOpen(false);
   return (
     <div>
@@ -51,6 +52,7 @@ export const CreateDialog = ({
             onSubmit={form.handleSubmit((data) => {
               onSubmit(data, () => {
                 handleClose();
+                reset();
               });
             })}
           >

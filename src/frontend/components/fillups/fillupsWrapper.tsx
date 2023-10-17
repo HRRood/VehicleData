@@ -8,5 +8,10 @@ export const FillupsWrapper = async () => {
     return <p>No vehicles found</p>;
   }
 
-  return <Fillups firstLoadVehicle={vehicles[0]} />;
+  return (
+    <div>
+      <h2>Fillips</h2>
+      <Fillups firstLoadVehicle={vehicles[0]} />
+    </div>
+  );
 };

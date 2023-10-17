@@ -9,7 +9,7 @@ import { UpdateVehicleOdo } from "@/backend/repository/vehicles/updateVehicleOdo
 import { IsVehicleOfUser } from "@/backend/repository/vehicles/isVehicleOfUser";
 // import { createDefaultResponse } from "@/backend/utils/createDefaultResponse";
 
-interface PostBodyFillup {
+interface PostBodyTrip {
   drivenKm: number;
   startDateTime: Date;
   endDateTime: Date;
@@ -24,7 +24,8 @@ export async function POST(request: Request) {
   if (!session || !session.user?.email) {
     return NextResponse.json(createDefaultResponse({}, false, "Unauthorised"), { status: 401 });
   }
-  const { drivenKm, startDateTime, endDateTime, startLocation, endLocation, vehicleId }: PostBodyFillup = await request.json();
+
+  const { drivenKm, startDateTime, endDateTime, startLocation, endLocation, vehicleId }: PostBodyTrip = await request.json();
 
   const isVehicleOfUser = await IsVehicleOfUser(vehicleId, session.user.email);
 

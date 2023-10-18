@@ -5,5 +5,8 @@ export async function FindAllFillupsByVehicleId(vehicleId: number) {
     where: {
       VehicleId: vehicleId,
     },
+    orderBy: {
+      Date: "asc",
+    },
   });
 }

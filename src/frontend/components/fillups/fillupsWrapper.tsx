@@ -3,6 +3,7 @@ import { Fillups } from "./fillups";
 import { GetAllVehiclesOfUser } from "@/backend/repository/vehicles/getAllVehiclesOfUser";
 import { FuelTotalCostsChart } from "../dashboard/fillups/fuelTotalCostsChart";
 import { TotalKmsDrivenPerFillup } from "../dashboard/fillups/totalKmsDrivenPerFillup";
+import { LiterPricesOverTime } from "../dashboard/fillups/literPricesOverTime";
 
 export const FillupsWrapper = async () => {
   const vehicles = await GetAllVehiclesOfUser();
@@ -17,6 +18,7 @@ export const FillupsWrapper = async () => {
         <FuelEfficiencyChart vehicle={vehicles[0]} />
         <FuelTotalCostsChart vehicle={vehicles[0]} />
         <TotalKmsDrivenPerFillup vehicle={vehicles[0]} />
+        <LiterPricesOverTime vehicle={vehicles[0]} />
       </div>
       <Fillups firstLoadVehicle={vehicles[0]} />
     </div>

@@ -10,6 +10,7 @@ import { DateInput } from "../../form/DateInput/DateInput";
 import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
 import { useAtom } from "jotai";
 import { api } from "@/frontend/api/api";
+import { SearchInput } from "../../form/SearchInput/searchInput";
 
 const TripDataValidation = z.object({
   startLocation: z.string().min(1),
@@ -23,7 +24,6 @@ export const AddTripModal = () => {
   const [selectedVehicle] = useAtom(SelectedVehicleAtom);
 
   const onSubmit = async (data: any, callback: () => void) => {
-    console.log({ ...data, vehicleId: selectedVehicle?.Id });
     api.post("/api/trips", { body: JSON.stringify({ ...data, vehicleId: selectedVehicle?.Id }) }).then((res) => {
       if (res.success) {
         mutate((key) => typeof key === "string");
@@ -39,16 +39,16 @@ export const AddTripModal = () => {
         <TextInput id="drivenKm" name="drivenKm" label="Driven KM" type="number" inputProps={{ step: 0.01 }} />
       </div>
       <div className={styles.fields_group}>
-        <DateInput label="Start time" name="startDateTime" />
+        <DateInput label="Start time" name="startDateTime" maxDate={new Date()} />
       </div>
       <div className={styles.fields_group}>
-        <DateInput label="End time" name="endDateTime" />
+        <DateInput label="End time" name="endDateTime" maxDate={new Date()} />
       </div>
       <div className={styles.fields_group}>
-        <TextInput id="startLocation" name="startLocation" label="Start Location" />
+        <SearchInput id="startLocation" name="startLocation" label="Start Location" />
       </div>
       <div className={styles.fields_group}>
-        <TextInput id="endLocation" name="endLocation" label="End Location" />
+        <SearchInput id="endLocation" name="endLocation" label="End Location" />
       </div>
     </CreateDialog>
   );

@@ -10,9 +10,10 @@ import nl from "date-fns/locale/nl";
 interface DateInputProps {
   name: string;
   label: string;
+  maxDate: Date;
 }
 
-export const DateInput = ({ name, label, ...props }: DateInputProps) => {
+export const DateInput = ({ name, label, maxDate, ...props }: DateInputProps) => {
   const { register, formState } = useFormContext();
   const error = getNestedError(formState.errors, name);
 
@@ -28,6 +29,7 @@ export const DateInput = ({ name, label, ...props }: DateInputProps) => {
                 onChange={(event) => {
                   onChange(event);
                 }}
+                maxDateTime={maxDate}
                 {...props}
                 {...restField}
               />

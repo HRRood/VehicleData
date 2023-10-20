@@ -50,6 +50,7 @@ export const CreateDialog = ({
         <FormProvider {...form}>
           <form
             onSubmit={form.handleSubmit((data) => {
+              console.log(data);
               onSubmit(data, () => {
                 handleClose();
                 reset();

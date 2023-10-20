@@ -5,9 +5,7 @@ import { isValid } from "date-fns";
 import { prisma } from "@/backend/lib/prisma";
 import { FindVehicleById } from "@/backend/repository/vehicles/findVehicleById";
 import { createDefaultResponse } from "@/backend/utils/createDefaultResponse";
-import { UpdateVehicleOdo } from "@/backend/repository/vehicles/updateVehicleOdo";
 import { IsVehicleOfUser } from "@/backend/repository/vehicles/isVehicleOfUser";
-// import { createDefaultResponse } from "@/backend/utils/createDefaultResponse";
 
 interface PostBodyTrip {
   drivenKm: number;
@@ -63,9 +61,5 @@ export async function POST(request: Request) {
     },
   });
 
-  const newOdo = drivenKm + (vehicle.Odo ?? 0);
-
-  const updatedVehicle = await UpdateVehicleOdo(vehicleId, newOdo);
-
-  return NextResponse.json(createDefaultResponse({ newFillup, updatedVehicle }, true, "Fillup created"));
+  return NextResponse.json(createDefaultResponse(newFillup, true, "Fillup created"));
 }

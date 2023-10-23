@@ -1,6 +1,6 @@
 import { useLocations } from "@/frontend/hooks/useLocations";
 import { Autocomplete, BaseTextFieldProps, FormControl, TextField } from "@mui/material";
-import { Controller, FieldError, FieldErrors, useFormContext } from "react-hook-form";
+import { FieldError, FieldErrors, useFormContext } from "react-hook-form";
 import { styled } from "styled-components";
 import Loader from "../../global/Loader/loader";
 
@@ -27,29 +27,19 @@ export const getNestedError = (errors: FieldErrors, name: string): FieldError =>
 
 export const SearchInput = ({ name, label }: SearchInputProps) => {
   const { data, isLoading } = useLocations();
-  const { control, setValue, watch } = useFormContext();
+  const { setValue } = useFormContext();
 
-  const currValue = watch(name);
-  console.log(currValue);
   if (isLoading) return <Loader isLoading />;
 
   const options = data || [];
-
-  // const selectedValue = options.find((option) => option === currValue);
-  // console.log(selectedValue);
   return (
     <div style={{ margin: "5px 0" }}>
       <FormControl fullWidth>
-        {/* <Controller
-          name={name}
-          control={control}
-          render={() => ( */}
         <Autocomplete
           freeSolo
           fullWidth
           // defaultValue={selectedValue}
           onChange={(_: any, newValue) => {
-            console.log(newValue);
             setValue(name, newValue);
           }}
           options={options}
@@ -57,8 +47,6 @@ export const SearchInput = ({ name, label }: SearchInputProps) => {
             return <TextField label={label} name={name} {...params} />;
           }}
         />
-        {/* )}
-        /> */}
       </FormControl>
     </div>
   );

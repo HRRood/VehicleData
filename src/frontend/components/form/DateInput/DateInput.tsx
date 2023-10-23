@@ -13,7 +13,7 @@ interface DateInputProps {
   maxDate: Date;
 }
 
-export const DateInput = ({ name, label, maxDate, ...props }: DateInputProps) => {
+export const DateInput = ({ name, label, maxDate }: DateInputProps) => {
   const { register, formState } = useFormContext();
   const error = getNestedError(formState.errors, name);
 
@@ -30,7 +30,6 @@ export const DateInput = ({ name, label, maxDate, ...props }: DateInputProps) =>
                   onChange(event);
                 }}
                 maxDateTime={maxDate}
-                {...props}
                 {...restField}
               />
             </LocalizationProvider>

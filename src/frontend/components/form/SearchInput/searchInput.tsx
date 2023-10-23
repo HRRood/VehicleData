@@ -30,32 +30,35 @@ export const SearchInput = ({ name, label }: SearchInputProps) => {
   const { control, setValue, watch } = useFormContext();
 
   const currValue = watch(name);
+  console.log(currValue);
   if (isLoading) return <Loader isLoading />;
 
-  const options = data?.map((location) => ({ label: location, value: location })) || [];
+  const options = data || [];
 
-  const selectedValue = options.find((option) => option.value === currValue);
+  // const selectedValue = options.find((option) => option === currValue);
+  // console.log(selectedValue);
   return (
     <div style={{ margin: "5px 0" }}>
       <FormControl fullWidth>
-        <Controller
+        {/* <Controller
           name={name}
           control={control}
-          render={() => (
-            <Autocomplete
-              freeSolo
-              fullWidth
-              defaultValue={selectedValue}
-              onChange={(_: any, newValue) => {
-                setValue(name, newValue);
-              }}
-              options={options}
-              renderInput={(params) => {
-                return <TextField label={label} {...params} />;
-              }}
-            />
-          )}
+          render={() => ( */}
+        <Autocomplete
+          freeSolo
+          fullWidth
+          // defaultValue={selectedValue}
+          onChange={(_: any, newValue) => {
+            console.log(newValue);
+            setValue(name, newValue);
+          }}
+          options={options}
+          renderInput={(params) => {
+            return <TextField label={label} name={name} {...params} />;
+          }}
         />
+        {/* )}
+        /> */}
       </FormControl>
     </div>
   );

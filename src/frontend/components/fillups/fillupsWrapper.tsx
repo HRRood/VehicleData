@@ -4,6 +4,8 @@ import { GetAllVehiclesOfUser } from "@/backend/repository/vehicles/getAllVehicl
 import { FuelTotalCostsChart } from "../dashboard/fillups/fuelTotalCostsChart";
 import { TotalKmsDrivenPerFillup } from "../dashboard/fillups/totalKmsDrivenPerFillup";
 import { LiterPricesOverTime } from "../dashboard/fillups/literPricesOverTime";
+import { Box, Typography } from "@mui/material";
+import { FuelCostsPerKmChart } from "../dashboard/fillups/fuelCostsPerKm";
 
 export const FillupsWrapper = async () => {
   const vehicles = await GetAllVehiclesOfUser();
@@ -13,14 +15,18 @@ export const FillupsWrapper = async () => {
   }
 
   return (
-    <div>
-      <div style={{ margin: "20px 0", display: "flex", flexWrap: "wrap", gap: "50px" }}>
+    <Box>
+      <Typography variant="h4" align="center">
+        Fillups
+      </Typography>
+      <Box sx={{ margin: "20px 0", display: "flex", flexWrap: "wrap", gap: "50px" }}>
         <FuelEfficiencyChart vehicle={vehicles[0]} />
         <FuelTotalCostsChart vehicle={vehicles[0]} />
+        <FuelCostsPerKmChart vehicle={vehicles[0]} />
         <TotalKmsDrivenPerFillup vehicle={vehicles[0]} />
         <LiterPricesOverTime vehicle={vehicles[0]} />
-      </div>
+      </Box>
       <Fillups firstLoadVehicle={vehicles[0]} />
-    </div>
+    </Box>
   );
 };

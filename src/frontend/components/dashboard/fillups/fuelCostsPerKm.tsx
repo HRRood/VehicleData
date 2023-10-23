@@ -8,11 +8,11 @@ import Loader from "../../global/Loader/loader";
 import { format } from "date-fns";
 import { BasicAreaChart } from "../global/basicAreaChart";
 
-interface FuelEfficiencyChartProps {
+interface FuelCostsPerKmChartProps {
   vehicle: Vehicles;
 }
 
-export const FuelEfficiencyChart = ({ vehicle }: FuelEfficiencyChartProps) => {
+export const FuelCostsPerKmChart = ({ vehicle }: FuelCostsPerKmChartProps) => {
   const [selectedVehicle] = useAtom(SelectedVehicleAtom);
   const { data, isLoading } = useVehicleFillups(selectedVehicle?.Id || vehicle?.Id);
 
@@ -28,9 +28,9 @@ export const FuelEfficiencyChart = ({ vehicle }: FuelEfficiencyChartProps) => {
     data?.map((fillup) => {
       return {
         date: format(new Date(fillup.Date), "dd-MM-yy"),
-        efficiency: fillup.FuelEfficiency,
+        costs: Math.round((fillup.LitersFilled / fillup.DrivenKm) * 10000) / 10000,
       };
     }) || [];
 
-  return <BasicAreaChart title="Fuel efficiency KM/L" data={mappedData} xField="date" yField="efficiency" syncId="fillups" />;
+  return <BasicAreaChart title="Total costs per km" data={mappedData} xField="date" yField="costs" syncId="fillups" />;
 };

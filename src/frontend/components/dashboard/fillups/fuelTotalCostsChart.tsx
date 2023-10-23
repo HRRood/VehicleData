@@ -32,5 +32,5 @@ export const FuelTotalCostsChart = ({ vehicle }: FuelTotalCostsChartProps) => {
       };
     }) || [];
 
-  return <BasicAreaChart title="Total costs" data={mappedData} xField="date" yField="costs" />;
+  return <BasicAreaChart title="Total costs" data={mappedData} xField="date" yField="costs" syncId="fillups" />;
 };

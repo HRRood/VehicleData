@@ -32,5 +32,5 @@ export const TotalKmsDrivenPerFillup = ({ vehicle }: TotalKmsDrivenPerFillupProp
       };
     }) || [];
 
-  return <BasicAreaChart title="Total driven Kms" data={mappedData} xField="date" yField="driven" />;
+  return <BasicAreaChart title="Total driven Kms" data={mappedData} xField="date" yField="driven" syncId="fillups" />;
 };

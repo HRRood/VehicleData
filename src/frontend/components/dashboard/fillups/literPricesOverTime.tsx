@@ -32,5 +32,5 @@ export const LiterPricesOverTime = ({ vehicle }: LiterPricesOverTimeProps) => {
       };
     }) || [];
 
-  return <BasicAreaChart title="Liter prices" data={mappedData} xField="date" yField="literPrice" />;
+  return <BasicAreaChart title="Liter prices" data={mappedData} xField="date" yField="literPrice" syncId="fillups" />;
 };

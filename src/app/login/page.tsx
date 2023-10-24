@@ -11,6 +11,7 @@ export default async function LoginPage() {
   if (session) {
     redirect("/");
   }
+
   return (
     <>
       {JSON.stringify(vehicles)}

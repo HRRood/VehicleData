@@ -1,5 +1,5 @@
 import { GetAllVehiclesOfUser } from "@/backend/repository/vehicles/getAllVehiclesOfUser";
-import { Trips } from "./trips";
+// import { Trips } from "./trips";
 import { Box, Typography } from "@mui/material";
 import { TotalTripsDrivenPerDay } from "../dashboard/trips/totalTripsDrivenPerDay";
 import { TotalKmDrivenPerDay } from "../dashboard/trips/totalKmDrivenPerDay";
@@ -22,7 +22,7 @@ export const TripsWrapper = async () => {
         <TotalKmDrivenPerDay vehicle={vehicles[0]} />
         <MostLocationsStartedVsEnded vehicle={vehicles[0]} />
       </Box>
-      <Trips firstLoadVehicle={vehicles[0]} />
+      {/* <Trips firstLoadVehicle={vehicles[0]} /> */}
     </Box>
   );
 };

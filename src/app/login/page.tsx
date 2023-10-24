@@ -6,7 +6,13 @@ import { GetVehicles } from "@/backend/repository/vehicles/getVehicles";
 
 export default async function LoginPage() {
   const session = await getServerSession(options);
-  const vehicles = await GetVehicles();
+  let anyThing: any;
+  try {
+    anyThing = await GetVehicles();
+  } catch (error) {
+    console.log(error);
+    anyThing = error;
+  }
 
   if (session) {
     redirect("/");
@@ -14,7 +20,7 @@ export default async function LoginPage() {
 
   return (
     <>
-      {JSON.stringify(vehicles)}
+      {JSON.stringify(anyThing)}
       <Login />
     </>
   );

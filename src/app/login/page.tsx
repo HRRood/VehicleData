@@ -20,7 +20,6 @@ export default async function LoginPage() {
 
   return (
     <>
-      {process.env.MYSQL_CONNECTION_STRING}
       {JSON.stringify(anyThing)}
       <Login />
     </>

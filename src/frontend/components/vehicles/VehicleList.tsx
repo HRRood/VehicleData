@@ -22,7 +22,7 @@ export const VehicleList = () => {
   if (data?.length === 0) return <p>No vehicles added yet, use the add button to add your vehicle.</p>;
 
   const vehicles = data.map((vehicle) => {
-    return <VehicleCard key={vehicle.Id} vehicle={vehicle} />;
+    return <VehicleCard key={vehicle.id} vehicle={vehicle} />;
   });
   return <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>{vehicles}</div>;
 };

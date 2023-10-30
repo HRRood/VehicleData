@@ -1,4 +1,4 @@
-import { Vehicles } from "@prisma/client";
 import { atom } from "jotai";
+import { Vehicle } from "../hooks/useVehicles";
 
-export const SelectedVehicleAtom = atom<Vehicles | null>(null);
+export const SelectedVehicleAtom = atom<Vehicle | null>(null);

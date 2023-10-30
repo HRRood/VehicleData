@@ -28,4 +28,12 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }: { token: any; user: any }) {
+      return { ...token, ...user };
+    },
+    async session({ session, token }: { session: any; token: any; user: any }) {
+      return { ...session, user: token };
+    },
+  },
 };

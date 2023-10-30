@@ -7,15 +7,6 @@ datasource db {
   url      = env("MYSQL_CONNECTION_STRING")
 }
 
-model Users {
-  Id        Int        @id @default(autoincrement())
-  Email     String     @db.VarChar(100)
-  Password  String     @db.VarChar(255)
-  FirstName String     @db.VarChar(255)
-  LastName  String     @db.VarChar(255)
-  Vehicles  Vehicles[]
-}
-
 model Fillups {
   Id             Int      @id @default(autoincrement())
   VehicleId      Int
@@ -42,6 +33,15 @@ model Trips {
   Vehicles      Vehicles @relation(fields: [VehicleId], references: [Id], onDelete: Cascade, map: "Trips_FK")
 
   @@index([VehicleId], map: "Trips_FK")
+}
+
+model Users {
+  Id        Int        @id @default(autoincrement())
+  Email     String     @db.VarChar(100)
+  Password  String     @db.VarChar(255)
+  FirstName String     @db.VarChar(255)
+  LastName  String     @db.VarChar(255)
+  Vehicles  Vehicles[]
 }
 
 model Vehicles {

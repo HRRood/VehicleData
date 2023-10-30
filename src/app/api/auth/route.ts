@@ -15,20 +15,20 @@ async function comparePassword(password: string, hashedPassword: string) {
 export async function POST(request: Request) {
   const { email, password }: PostBodyAuth = await request.json();
 
-  console.log(email, password);
   const existingUser = await FindUserByEmail(email);
-  console.log(existingUser);
 
   if (!existingUser) {
     return NextResponse.json(createDefaultResponse({}, false, "Incorrect data"));
   }
 
-  const passwordMatch = await comparePassword(password, existingUser.Password);
+  const passwordMatch = await comparePassword(password, existingUser.password);
   console.log(passwordMatch);
 
   if (!passwordMatch) {
     return NextResponse.json(createDefaultResponse({}, false, "Incorrect data"));
   }
 
-  return NextResponse.json(createDefaultResponse({ email: existingUser.Email, name: `${existingUser.FirstName} ${existingUser.LastName}` }));
+  return NextResponse.json(
+    createDefaultResponse({ id: existingUser.id, email: existingUser.email, name: `${existingUser.firstname} ${existingUser.lastname}` })
+  );
 }

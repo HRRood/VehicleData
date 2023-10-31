@@ -2,19 +2,19 @@
 
 import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
 import { useVehicleFillups } from "@/frontend/hooks/useVehicleFillups";
-import { Vehicles } from "@prisma/client";
 import { useAtom } from "jotai";
 import Loader from "../../global/Loader/loader";
 import { format } from "date-fns";
 import { BasicAreaChart } from "../global/basicAreaChart";
+import { Vehicle } from "@/frontend/hooks/useVehicles";
 
 interface LiterPricesOverTimeProps {
-  vehicle: Vehicles;
+  vehicle: Vehicle;
 }
 
 export const LiterPricesOverTime = ({ vehicle }: LiterPricesOverTimeProps) => {
   const [selectedVehicle] = useAtom(SelectedVehicleAtom);
-  const { data, isLoading } = useVehicleFillups(selectedVehicle?.Id || vehicle?.Id);
+  const { data, isLoading } = useVehicleFillups(selectedVehicle?.id || vehicle?.id);
 
   if (isLoading) {
     return <Loader isLoading />;
@@ -27,8 +27,8 @@ export const LiterPricesOverTime = ({ vehicle }: LiterPricesOverTimeProps) => {
   const mappedData =
     data?.map((fillup) => {
       return {
-        date: format(new Date(fillup.Date), "dd-MM-yy"),
-        literPrice: Math.round((fillup.Costs / fillup.LitersFilled) * 100) / 100,
+        date: format(new Date(fillup.date), "dd-MM-yy"),
+        literPrice: Math.round((fillup.costs / fillup.litersFilled) * 100) / 100,
       };
     }) || [];
 

@@ -9,14 +9,14 @@ export async function GET(request: NextRequest, { params: { id } }: { params: { 
   const session = await getServerSession(options);
 
   if (!session || !session?.user?.email) {
-    return NextResponse.json(createDefaultResponse(null), { status: 401 });
+    return NextResponse.json(createDefaultResponse(null, false, "Unauthorized"), { status: 401 });
   }
 
-  const isVehicleOfUser = await IsVehicleOfUser(Number(id), session.user.email);
+  const isVehicleOfUser = await IsVehicleOfUser(id);
   if (!isVehicleOfUser) {
-    return NextResponse.json(createDefaultResponse(null), { status: 403 });
+    return NextResponse.json(createDefaultResponse(null, false, "Not jo vehicle"), { status: 403 });
   }
 
-  const fillups = await FindAllFillupsByVehicleId(Number(id));
+  const fillups = await FindAllFillupsByVehicleId(id);
   return NextResponse.json(createDefaultResponse(fillups));
 }

@@ -14,19 +14,16 @@
     "@hookform/resolvers": "^3.3.1",
     "@mui/material": "^5.14.12",
     "@mui/x-date-pickers": "^6.16.2",
-    "@prisma/client": "^5.5.0",
     "bcrypt": "^5.1.1",
     "date-fns": "^2.30.0",
-    "firebase": "^9.23.0",
+    "firebase": "^10.5.2",
     "jotai": "^2.4.3",
     "next": "13.5.4",
     "next-auth": "^4.23.2",
     "react": "^18",
     "react-dom": "^18",
-    "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.45.2",
     "react-spinners": "^0.13.8",
-    "reactfire": "^4.2.3",
     "recharts": "^2.9.0",
     "styled-components": "^6.0.8",
     "swr": "^2.2.4",
@@ -39,7 +36,6 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
-    "prisma": "^5.5.0",
     "typescript": "^5"
   }
 }

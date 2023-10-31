@@ -22,7 +22,6 @@ export async function POST(request: Request) {
   }
 
   const passwordMatch = await comparePassword(password, existingUser.password);
-  console.log(passwordMatch);
 
   if (!passwordMatch) {
     return NextResponse.json(createDefaultResponse({}, false, "Incorrect data"));

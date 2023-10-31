@@ -2,27 +2,27 @@
 
 import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
 import { useVehicleTrips } from "@/frontend/hooks/useVehicleTrips";
-import { Vehicles } from "@prisma/client";
 import { format } from "date-fns";
 import { useAtom } from "jotai";
 import Loader from "../global/Loader/loader";
 import { Box } from "@mui/material";
+import { Vehicle } from "@/frontend/hooks/useVehicles";
 
 interface TripsProps {
-  firstLoadVehicle: Vehicles;
+  firstLoadVehicle: Vehicle;
 }
 
 export const Trips = ({ firstLoadVehicle }: TripsProps) => {
   const [selectedVehicle] = useAtom(SelectedVehicleAtom);
-  const { data, isLoading } = useVehicleTrips(selectedVehicle?.Id || firstLoadVehicle.Id);
+  const { data, isLoading } = useVehicleTrips(selectedVehicle?.id || firstLoadVehicle.id);
   const trips = data?.map((trip) => {
     return (
-      <Box border={1} borderColor="primary.main" padding={2} flex={1} minWidth="300px" key={trip.Id}>
-        <p>Driven: {trip.DrivenKm}km</p>
-        <p>Starttime: {format(new Date(trip.StartDateTime), "dd-MM-yy hh:mm")}</p>
-        <p>Endtime: {format(new Date(trip.EndDateTime), "dd-MM-yy hh:mm")}</p>
-        <p>Start location: {trip.StartLocation}</p>
-        <p>Destination: {trip.EndLocation}</p>
+      <Box border={1} borderColor="primary.main" padding={2} flex={1} minWidth="300px" key={trip.id}>
+        <p>Driven: {trip.drivenKm}km</p>
+        <p>Starttime: {format(new Date(trip.startTime), "dd-MM-yy hh:mm")}</p>
+        <p>Endtime: {format(new Date(trip.endTime), "dd-MM-yy hh:mm")}</p>
+        <p>Start location: {trip.start}</p>
+        <p>Destination: {trip.end}</p>
       </Box>
     );
   });

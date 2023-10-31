@@ -9,6 +9,6 @@ export const createDefaultResponse = <T>(data: T, success = true, message = ""):
   return {
     data,
     message,
-    success,
+    success: data !== null && success,
   };
 };

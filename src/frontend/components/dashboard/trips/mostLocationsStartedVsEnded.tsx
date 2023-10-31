@@ -2,18 +2,18 @@
 
 import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
 import { useVehicleTrips } from "@/frontend/hooks/useVehicleTrips";
-import { Vehicles } from "@prisma/client";
 import { useAtom } from "jotai";
 import Loader from "../../global/Loader/loader";
 import { BasicBarChart } from "../global/basicBarChart";
+import { Vehicle } from "@/frontend/hooks/useVehicles";
 
 interface MostLocationsStartedVsEndedProps {
-  vehicle: Vehicles;
+  vehicle: Vehicle;
 }
 
 export const MostLocationsStartedVsEnded = ({ vehicle }: MostLocationsStartedVsEndedProps) => {
   const [selectedVehicle] = useAtom(SelectedVehicleAtom);
-  const { data, isLoading } = useVehicleTrips(selectedVehicle?.Id || vehicle.Id);
+  const { data, isLoading } = useVehicleTrips(selectedVehicle?.id || vehicle.id);
 
   if (isLoading) return <Loader isLoading />;
 
@@ -24,17 +24,17 @@ export const MostLocationsStartedVsEnded = ({ vehicle }: MostLocationsStartedVsE
   const mappedData =
     data
       ?.reduce((acc, trip) => {
-        const { StartLocation, EndLocation } = trip;
-        const index = acc.findIndex((item) => item.location === StartLocation);
+        const { start, end } = trip;
+        const index = acc.findIndex((item) => item.location === start);
         if (index === -1) {
-          acc.push({ location: StartLocation, started: 1, ended: 0 });
+          acc.push({ location: start, started: 1, ended: 0 });
         } else {
           acc[index].started += 1;
         }
 
-        const index2 = acc.findIndex((item) => item.location === EndLocation);
+        const index2 = acc.findIndex((item) => item.location === end);
         if (index2 === -1) {
-          acc.push({ location: EndLocation, started: 0, ended: 1 });
+          acc.push({ location: end, started: 0, ended: 1 });
         } else {
           acc[index2].ended += 1;
         }

@@ -2,19 +2,19 @@
 
 import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
 import { useVehicleFillups } from "@/frontend/hooks/useVehicleFillups";
-import { Vehicles } from "@prisma/client";
 import { useAtom } from "jotai";
 import Loader from "../../global/Loader/loader";
 import { format } from "date-fns";
 import { BasicAreaChart } from "../global/basicAreaChart";
+import { Vehicle } from "@/frontend/hooks/useVehicles";
 
 interface FuelTotalCostsChartProps {
-  vehicle: Vehicles;
+  vehicle: Vehicle;
 }
 
 export const FuelTotalCostsChart = ({ vehicle }: FuelTotalCostsChartProps) => {
   const [selectedVehicle] = useAtom(SelectedVehicleAtom);
-  const { data, isLoading } = useVehicleFillups(selectedVehicle?.Id || vehicle?.Id);
+  const { data, isLoading } = useVehicleFillups(selectedVehicle?.id || vehicle?.id);
 
   if (isLoading) {
     return <Loader isLoading />;
@@ -27,8 +27,8 @@ export const FuelTotalCostsChart = ({ vehicle }: FuelTotalCostsChartProps) => {
   const mappedData =
     data?.map((fillup) => {
       return {
-        date: format(new Date(fillup.Date), "dd-MM-yy"),
-        costs: fillup.Costs,
+        date: format(new Date(fillup.date), "dd-MM-yy"),
+        costs: fillup.costs,
       };
     }) || [];
 

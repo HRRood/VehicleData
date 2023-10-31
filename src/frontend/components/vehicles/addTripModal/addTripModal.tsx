@@ -24,7 +24,7 @@ export const AddTripModal = () => {
   const [selectedVehicle] = useAtom(SelectedVehicleAtom);
 
   const onSubmit = async (data: any, callback: () => void) => {
-    api.post("/api/trips", { body: JSON.stringify({ ...data, vehicleId: selectedVehicle?.Id }) }).then((res) => {
+    api.post("/api/trips", { body: JSON.stringify({ ...data, vehicleId: selectedVehicle?.id }) }).then((res) => {
       if (res.success) {
         mutate((key) => typeof key === "string");
         callback();

@@ -1,7 +1,8 @@
 import { options } from "@/app/api/auth/[...nextauth]/options";
-import { prisma } from "@/backend/lib/prisma";
 import { getServerSession } from "next-auth";
 import { FindUserByEmail } from "../users/findUserByEmail";
+import { db } from "@/firebase/clientApp";
+import { addDoc, collection } from "firebase/firestore";
 
 export async function CreateVehicle(make: string, model: string, year: number, license: string, odo?: number) {
   const session = await getServerSession(options);
@@ -16,14 +17,14 @@ export async function CreateVehicle(make: string, model: string, year: number, l
     return null;
   }
 
-  return await prisma.vehicles.create({
-    data: {
-      UserId: user.Id,
-      Make: make,
-      Model: model,
-      Year: year,
-      LicensePlate: license,
-      Odo: odo,
-    },
+  const newVehicle = await addDoc(collection(db, "vehicles"), {
+    userId: user.id,
+    make: make,
+    model: model,
+    year: year,
+    licensePlate: license,
+    odometer: odo,
   });
+
+  return newVehicle;
 }

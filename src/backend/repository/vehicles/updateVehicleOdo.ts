@@ -1,12 +1,12 @@
-import { prisma } from "@/backend/lib/prisma";
+import { db } from "@/firebase/clientApp";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
-export async function UpdateVehicleOdo(id: number, odo: number) {
-  return await prisma.vehicles.update({
-    where: {
-      Id: id,
-    },
-    data: {
-      Odo: odo,
-    },
+export async function UpdateVehicleOdo(id: string, odo: number) {
+  const docRef = doc(db, "vehicles", id);
+  const existingDoc = await getDoc(docRef);
+
+  await setDoc(docRef, {
+    ...existingDoc.data(),
+    odometer: odo,
   });
 }

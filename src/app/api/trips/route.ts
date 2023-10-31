@@ -2,10 +2,11 @@ import { getServerSession } from "next-auth";
 import { options } from "../auth/[...nextauth]/options";
 import { NextResponse } from "next/server";
 import { isValid } from "date-fns";
-import { prisma } from "@/backend/lib/prisma";
 import { FindVehicleById } from "@/backend/repository/vehicles/findVehicleById";
 import { createDefaultResponse } from "@/backend/utils/createDefaultResponse";
 import { IsVehicleOfUser } from "@/backend/repository/vehicles/isVehicleOfUser";
+import { db } from "@/firebase/clientApp";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
 
 interface PostBodyTrip {
   drivenKm: number;
@@ -13,7 +14,7 @@ interface PostBodyTrip {
   endDateTime: Date;
   startLocation: string;
   endLocation: string;
-  vehicleId: number;
+  vehicleId: string;
 }
 
 export async function POST(request: Request) {
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
 
   const { drivenKm, startDateTime, endDateTime, startLocation, endLocation, vehicleId }: PostBodyTrip = await request.json();
 
-  const isVehicleOfUser = await IsVehicleOfUser(vehicleId, session.user.email);
+  const isVehicleOfUser = await IsVehicleOfUser(vehicleId);
 
   if (!isVehicleOfUser) {
     return NextResponse.json(createDefaultResponse({}, false, "Vehicle not found or not yours"), { status: 401 });
@@ -50,16 +51,14 @@ export async function POST(request: Request) {
     newEndDateTime = new Date();
   }
 
-  const newFillup = await prisma.trips.create({
-    data: {
-      DrivenKm: drivenKm,
-      StartDateTime: newStartDateTime,
-      EndDateTime: newEndDateTime,
-      StartLocation: startLocation,
-      EndLocation: endLocation,
-      VehicleId: vehicleId,
-    },
+  const newTrip = await addDoc(collection(db, "trips"), {
+    drivenKm: drivenKm,
+    startTime: Timestamp.fromDate(newStartDateTime),
+    endTime: Timestamp.fromDate(newEndDateTime),
+    start: startLocation,
+    end: endLocation,
+    vehicleId: vehicleId,
   });
 
-  return NextResponse.json(createDefaultResponse(newFillup, true, "Fillup created"));
+  return NextResponse.json(createDefaultResponse(newTrip, true, "Fillup created"));
 }

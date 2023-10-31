@@ -1,8 +1,7 @@
 import { useSWR, SwrOptions } from "./useSWR";
 import { getVehicles } from "../api/vehicles/getVehicles";
 
-export interface Vehicle {
-  id: string;
+export interface FireBaseVehicle {
   make: string;
   model: string;
   year: number;
@@ -10,6 +9,9 @@ export interface Vehicle {
   odometer: number;
   userId: string;
   image: string;
+}
+export interface Vehicle extends FireBaseVehicle {
+  id: string;
 }
 
 export const getUseVehiclesKey = () => `useVehicles`;

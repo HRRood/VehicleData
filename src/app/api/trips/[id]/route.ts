@@ -12,11 +12,11 @@ export async function GET(request: NextRequest, { params: { id } }: { params: { 
     return NextResponse.json(createDefaultResponse(null), { status: 401 });
   }
 
-  const isVehicleOfUser = await IsVehicleOfUser(Number(id), session.user.email);
+  const isVehicleOfUser = await IsVehicleOfUser(id);
   if (!isVehicleOfUser) {
     return NextResponse.json(createDefaultResponse(null), { status: 403 });
   }
 
-  const trips = await FindAllTripsByVehicleId(Number(id));
+  const trips = await FindAllTripsByVehicleId(id);
   return NextResponse.json(createDefaultResponse(trips));
 }

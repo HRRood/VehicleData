@@ -10,6 +10,6 @@ export async function GET() {
     return NextResponse.json(createDefaultResponse({}, false, "Unauthorized"), { status: 401 });
   }
 
-  const response = await FindAllUsedLocations(session.user.email);
+  const response = await FindAllUsedLocations();
   return NextResponse.json(createDefaultResponse(response));
 }

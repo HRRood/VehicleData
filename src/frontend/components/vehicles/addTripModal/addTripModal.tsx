@@ -10,7 +10,7 @@ import { DateInput } from "../../form/DateInput/DateInput";
 import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
 import { useAtom } from "jotai";
 import { api } from "@/frontend/api/api";
-import { SearchInput } from "../../form/SearchInput/searchInput";
+// import { SearchInput } from "../../form/SearchInput/searchInput";
 
 const TripDataValidation = z.object({
   startLocation: z.string().min(1),
@@ -45,10 +45,14 @@ export const AddTripModal = () => {
         <DateInput label="End time" name="endDateTime" maxDate={new Date()} />
       </div>
       <div className={styles.fields_group}>
-        <SearchInput id="startLocation" name="startLocation" label="Start Location" />
+        <TextInput id="startLocation" name="startLocation" label="Start location" />
+
+        {/* <SearchInput id="startLocation" name="startLocation" label="Start Location" /> */}
       </div>
       <div className={styles.fields_group}>
-        <SearchInput id="endLocation" name="endLocation" label="End Location" />
+        <TextInput id="enLocation" name="enLocation" label="End location" />
+
+        {/* <SearchInput id="endLocation" name="endLocation" label="End Location" /> */}
       </div>
     </CreateDialog>
   );

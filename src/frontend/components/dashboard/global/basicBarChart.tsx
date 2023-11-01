@@ -18,7 +18,7 @@ export const BasicBarChart = ({ title, data, xField, yField, syncId, height = 30
   const strokeColors = [colors.darkPrimary, colors.darkSecondary, colors.primary, colors.secondary];
 
   return (
-    <Box sx={{ minWidth: { xs: "400px", sm: "400px", md: "500px" } }} style={{ textAlign: "center", width: "fit-content", flex: 1 }}>
+    <Box sx={{ minWidth: { xs: "300px", sm: "400px", md: "500px" } }} style={{ textAlign: "center", width: "fit-content", flex: 1 }}>
       <h3>{title}</h3>
       <ResponsiveContainer width="100%" height={height}>
         <BarChart data={data} syncId={syncId}>

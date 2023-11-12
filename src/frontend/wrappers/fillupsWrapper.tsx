@@ -1,11 +1,11 @@
-import { FuelEfficiencyChart } from "../dashboard/fillups/fuelEfficiencyChart";
+import { FuelEfficiencyChart } from "../components/dashboard/fillups/fuelEfficiencyChart";
 // import { Fillups } from "./fillups";
 import { GetAllVehiclesOfUser } from "@/backend/repository/vehicles/getAllVehiclesOfUser";
-import { FuelTotalCostsChart } from "../dashboard/fillups/fuelTotalCostsChart";
-import { TotalKmsDrivenPerFillup } from "../dashboard/fillups/totalKmsDrivenPerFillup";
-import { LiterPricesOverTime } from "../dashboard/fillups/literPricesOverTime";
+import { FuelTotalCostsChart } from "../components/dashboard/fillups/fuelTotalCostsChart";
+import { TotalKmsDrivenPerFillup } from "../components/dashboard/fillups/totalKmsDrivenPerFillup";
+import { LiterPricesOverTime } from "../components/dashboard/fillups/literPricesOverTime";
 import { Box, Typography } from "@mui/material";
-import { FuelCostsPerKmChart } from "../dashboard/fillups/fuelCostsPerKm";
+import { FuelCostsPerKmChart } from "../components/dashboard/fillups/fuelCostsPerKm";
 
 export const FillupsWrapper = async () => {
   const vehicles = await GetAllVehiclesOfUser();

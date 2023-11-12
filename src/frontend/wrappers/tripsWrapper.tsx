@@ -1,9 +1,9 @@
 import { GetAllVehiclesOfUser } from "@/backend/repository/vehicles/getAllVehiclesOfUser";
 // import { Trips } from "./trips";
 import { Box, Typography } from "@mui/material";
-import { TotalTripsDrivenPerDay } from "../dashboard/trips/totalTripsDrivenPerDay";
-import { TotalKmDrivenPerDay } from "../dashboard/trips/totalKmDrivenPerDay";
-import { MostLocationsStartedVsEnded } from "../dashboard/trips/mostLocationsStartedVsEnded";
+import { TotalTripsDrivenPerDay } from "../components/dashboard/trips/totalTripsDrivenPerDay";
+import { TotalKmDrivenPerDay } from "../components/dashboard/trips/totalKmDrivenPerDay";
+import { MostLocationsStartedVsEnded } from "../components/dashboard/trips/mostLocationsStartedVsEnded";
 
 export const TripsWrapper = async () => {
   const vehicles = await GetAllVehiclesOfUser();

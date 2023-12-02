@@ -1,9 +1,11 @@
 import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
-import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 import { AddFillUpModal } from "./addFillUpModal/addFillUpModal";
 import { AddTripModal } from "./addTripModal/addTripModal";
 import { Vehicle } from "@/frontend/hooks/useVehicles";
+import { Box, Heading, Inset } from "@radix-ui/themes";
+import Image from "next/image";
+import { crimson } from "@radix-ui/colors";
 
 interface VehicleCardProps {
   vehicle: Vehicle;
@@ -21,28 +23,41 @@ export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
   };
 
   return (
-    <Card
-      onClick={handleClick}
-      variant="elevation"
-      key={vehicle.id}
-      sx={{ cursor: "pointer", width: 300, border: 2, borderColor: isSelected ? "secondary.main" : "transparent" }}
-    >
-      <CardMedia component="img" height="250" image={vehicle.image || ""} alt="vehicle" />
-      <CardContent>
-        <Typography variant="h5" fontWeight={800}>
+    <Box style={{ maxWidth: 240, cursor: "pointer", border: `2px solid ${isSelected ? crimson.crimson12 : "transparent"}` }} onClick={handleClick}>
+      <Inset clip="padding-box" side="top" pb="current">
+        <Image
+          src={vehicle.image}
+          alt={vehicle.make + " " + vehicle.model}
+          style={{
+            display: "block",
+            objectFit: "cover",
+            width: "100%",
+            height: 225,
+            backgroundColor: "var(--gray-5)",
+          }}
+          width={500}
+          height={500}
+        />
+      </Inset>
+      <Box style={{ padding: "10px" }}>
+        <Heading>
           {vehicle.make} {vehicle.model}
-        </Typography>
-        <Typography variant="subtitle1" borderRadius="5px" bgcolor="#eda909" color="black" fontWeight={800} align="center">
+        </Heading>
+        <Heading size="4" align="center" style={{ backgroundColor: "#eda909", color: "black" }}>
           {vehicle.licensePlate}
-        </Typography>
-        <Typography variant="subtitle1">Bouwjaar: {vehicle.year}</Typography>
-        <Typography>Total KM: {vehicle.odometer}</Typography>
+        </Heading>
+        <Heading size="3" weight="light">
+          Bouwjaar: {vehicle.year}
+        </Heading>
+        <Heading size="3" weight="light">
+          Total KM: {vehicle.odometer}
+        </Heading>
 
-        <div style={{ margin: "5px 0", display: "flex", justifyContent: "space-between" }}>
+        <Box style={{ margin: "5px 0", display: "flex", justifyContent: "space-between" }}>
           <AddFillUpModal />
           <AddTripModal />
-        </div>
-      </CardContent>
-    </Card>
+        </Box>
+      </Box>
+    </Box>
   );
 };

@@ -1,7 +1,9 @@
 import "./globals.css";
+import "@radix-ui/themes/styles.css";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeHOC } from "../frontend/wrappers/themeHOC";
+import { Theme } from "@radix-ui/themes";
 import { Navbar } from "@/frontend/components/layout/navbar/navbar";
 import { AuthWrapper } from "../frontend/wrappers/AuthWrapper";
 import { JotaiWrapper } from "@/frontend/wrappers/JotaiWrapper";
@@ -19,10 +21,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <JotaiWrapper>
           <AuthWrapper>
-            <ThemeHOC>
+            <Theme appearance="dark">
+              {/* <ThemeHOC> */}
               <Navbar />
               <main>{children}</main>
-            </ThemeHOC>
+              {/* </ThemeHOC> */}
+            </Theme>
           </AuthWrapper>
         </JotaiWrapper>
       </body>

@@ -6,6 +6,7 @@ import { VehicleCard } from "./vehicleCard";
 import { useAtom } from "jotai";
 import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
 import { useEffect } from "react";
+import { Box } from "@radix-ui/themes";
 
 export const VehicleList = () => {
   const { data, isLoading } = useVehicles();
@@ -24,5 +25,5 @@ export const VehicleList = () => {
   const vehicles = data.map((vehicle) => {
     return <VehicleCard key={vehicle.id} vehicle={vehicle} />;
   });
-  return <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>{vehicles}</div>;
+  return <Box style={{ display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>{vehicles}</Box>;
 };

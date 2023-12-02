@@ -1,8 +1,8 @@
-import { BaseTextFieldProps, FormControl, TextField } from "@mui/material";
+import { Box, Text, TextField } from "@radix-ui/themes";
 import { FieldError, FieldErrors, useFormContext } from "react-hook-form";
 import { styled } from "styled-components";
 
-interface TextInputProps extends BaseTextFieldProps {
+interface TextInputProps extends React.ComponentProps<typeof TextField.Input> {
   name: string;
   label: string;
 }
@@ -27,10 +27,11 @@ export const TextInput = ({ name, label, ...props }: TextInputProps) => {
   const { register, formState } = useFormContext();
   const error = getNestedError(formState.errors, name);
   return (
-    <div style={{ margin: "5px 0" }}>
-      <FormControl fullWidth>
-        <TextField fullWidth label={label} {...register(name)} variant="outlined" error={error !== undefined} helperText={error?.message} {...props} />
-      </FormControl>
-    </div>
+    <Box style={{ margin: "5px 0" }}>
+      <TextField.Input {...props} placeholder={label} {...register(name)} variant="surface" size="3" />
+      <Text size="1" style={{ color: "red" }}>
+        {error?.message}
+      </Text>
+    </Box>
   );
 };

@@ -6,6 +6,7 @@ import { CreateDialog } from "@/frontend/components/CreateDialog/CreateDialog";
 import { TextInput } from "@/frontend/components/form/textInput/TextInput";
 
 import styles from "./CreateVehiclesModal.module.css";
+import { Box } from "@radix-ui/themes";
 
 const VehicleDataValidation = z.object({
   make: z.string().min(1),
@@ -33,28 +34,22 @@ export const CreateVehicleModal = () => {
       });
   };
   return (
-    <CreateDialog
-      DataValidation={VehicleDataValidation}
-      buttonColor="success"
-      buttonVariant="contained"
-      title="Create new vehicle"
-      onSubmit={onNewVehicleSubmit}
-    >
-      <div className={styles.fields_group}>
+    <CreateDialog DataValidation={VehicleDataValidation} buttonColor="crimson" buttonVariant="solid" title="Create new vehicle" onSubmit={onNewVehicleSubmit}>
+      <Box className={styles.fields_group}>
         <TextInput id="make" name="make" label="Make" />
-      </div>
-      <div className={styles.fields_group}>
+      </Box>
+      <Box className={styles.fields_group}>
         <TextInput id="model" name="model" label="Model" />
-      </div>
-      <div className={styles.fields_group}>
+      </Box>
+      <Box className={styles.fields_group}>
         <TextInput id="year" name="year" label="Year" type="number" />
-      </div>
-      <div className={styles.fields_group}>
+      </Box>
+      <Box className={styles.fields_group}>
         <TextInput id="licensePlate" name="licensePlate" label="Licenseplate number" />
-      </div>
-      <div className={styles.fields_group}>
+      </Box>
+      <Box className={styles.fields_group}>
         <TextInput id="odo" name="odo" label="Odo" type="number" />
-      </div>
+      </Box>
     </CreateDialog>
   );
 };

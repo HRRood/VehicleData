@@ -1,27 +1,18 @@
 "use client";
 
+import { RadixButtonVariants, RadixColors } from "@/app/page";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide } from "@mui/material";
-import { TransitionProps } from "@mui/material/transitions";
-import { forwardRef, useState } from "react";
+import { Dialog, Button, Flex } from "@radix-ui/themes";
+import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-
-const Transition = forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
 
 interface CreateDialogProps {
   DataValidation: any;
   onSubmit: (_data: any, _callback: () => void) => void;
   title: string;
   children: React.ReactNode;
-  buttonVariant?: "text" | "outlined" | "contained" | undefined;
-  buttonColor?: "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning" | undefined;
+  buttonVariant?: RadixButtonVariants;
+  buttonColor?: RadixColors;
   buttonText?: string;
 }
 
@@ -30,8 +21,8 @@ export const CreateDialog = ({
   onSubmit,
   title,
   children,
-  buttonVariant = "outlined",
-  buttonColor = "primary",
+  buttonVariant = "soft",
+  buttonColor = "amber",
   buttonText = "New",
 }: CreateDialogProps) => {
   const [open, setOpen] = useState(false);
@@ -40,35 +31,44 @@ export const CreateDialog = ({
   });
 
   const { reset } = form;
-  const handleClose = () => setOpen(false);
   return (
-    <div>
-      <Button variant={buttonVariant} color={buttonColor} type="button" onClick={() => setOpen(true)}>
-        {buttonText}
-      </Button>
-      <Dialog open={open} TransitionComponent={Transition} maxWidth="md" fullWidth onClose={handleClose} aria-describedby="alert-dialog-slide-description">
+    <Dialog.Root open={open} onOpenChange={setOpen}>
+      <Dialog.Trigger>
+        <Button color={buttonColor} variant={buttonVariant}>
+          {buttonText}
+        </Button>
+      </Dialog.Trigger>
+      <Dialog.Content style={{ maxWidth: 450 }}>
+        <Dialog.Title>{title}</Dialog.Title>
         <FormProvider {...form}>
           <form
             onSubmit={form.handleSubmit((data) => {
               onSubmit(data, () => {
-                handleClose();
                 reset();
+                setOpen(false);
               });
             })}
           >
-            <DialogTitle>{title}</DialogTitle>
-            <DialogContent>{children}</DialogContent>
-            <DialogActions>
-              <Button variant="outlined" color="error" onClick={handleClose}>
+            {children}
+
+            <Flex gap="3" mt="4" justify="end">
+              <Button
+                variant="surface"
+                color="bronze"
+                onClick={() => {
+                  reset();
+                  setOpen(false);
+                }}
+              >
                 Cancel
               </Button>
-              <Button variant="contained" type="submit">
+              <Button variant="solid" color="crimson">
                 Submit
               </Button>
-            </DialogActions>
+            </Flex>
           </form>
         </FormProvider>
-      </Dialog>
-    </div>
+      </Dialog.Content>
+    </Dialog.Root>
   );
 };

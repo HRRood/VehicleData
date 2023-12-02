@@ -1,14 +1,15 @@
 import { VehicleList } from "./VehicleList";
 import { CreateVehicleModal } from "./CreateVehicleModal/CreateVehiclesModal";
+import { Box, Text } from "@radix-ui/themes";
 
 export const VehiclesWrapper = async () => {
   return (
-    <div style={{ maxWidth: "1300px", margin: "auto" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center", marginBottom: "20px" }}>
-        <h2>My vehicles</h2>
+    <Box style={{ maxWidth: "1300px", margin: "auto" }}>
+      <Box style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center", marginBottom: "20px" }}>
+        <Text>My vehicles</Text>
         <CreateVehicleModal />
-      </div>
+      </Box>
       <VehicleList />
-    </div>
+    </Box>
   );
 };

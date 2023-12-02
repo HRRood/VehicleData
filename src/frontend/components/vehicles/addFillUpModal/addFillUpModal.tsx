@@ -6,10 +6,10 @@ import { CreateDialog } from "@/frontend/components/CreateDialog/CreateDialog";
 import { TextInput } from "@/frontend/components/form/textInput/TextInput";
 
 import styles from "./AddFillUpModal.module.css";
-import { DateInput } from "../../form/DateInput/DateInput";
 import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
 import { useAtom } from "jotai";
 import { api } from "@/frontend/api/api";
+import { Box } from "@radix-ui/themes";
 
 const FuelDataValidation = z.object({
   date: z.coerce.date(),
@@ -34,25 +34,32 @@ export const AddFillUpModal = () => {
     });
   };
   return (
-    <CreateDialog DataValidation={FuelDataValidation} buttonText="Add fillup" buttonColor="primary" title="Add new fillup" onSubmit={onSubmit}>
-      <div className={styles.fields_group}>
-        <DateInput label="Date (optional)" name="date" maxDate={new Date()} />
-      </div>
-      <div className={styles.fields_group}>
-        <TextInput id="drivenKm" name="drivenKm" label="Driven KM" type="number" inputProps={{ step: 0.01 }} />
-      </div>
-      <div className={styles.fields_group}>
-        <TextInput id="litersFilled" name="litersFilled" label="Liters" type="number" inputProps={{ step: 0.01 }} />
-      </div>
-      <div className={styles.fields_group}>
-        <TextInput id="cost" name="cost" label="Costs" type="number" inputProps={{ step: 0.01 }} />
-      </div>
-      <div className={styles.fields_group}>
+    <CreateDialog
+      DataValidation={FuelDataValidation}
+      buttonText="Add fillup"
+      buttonColor="crimson"
+      buttonVariant="surface"
+      title="Add new fillup"
+      onSubmit={onSubmit}
+    >
+      <Box className={styles.fields_group}>
+        <TextInput id="Date" name="date" label="Date" type="date" max={new Date().getDate()} />
+      </Box>
+      <Box className={styles.fields_group}>
+        <TextInput id="drivenKm" name="drivenKm" label="Driven KM" type="number" step="0.01" />
+      </Box>
+      <Box className={styles.fields_group}>
+        <TextInput id="litersFilled" name="litersFilled" label="Liters" type="number" step="0.01" />
+      </Box>
+      <Box className={styles.fields_group}>
+        <TextInput id="cost" name="cost" label="Costs" type="number" step="0.01" />
+      </Box>
+      <Box className={styles.fields_group}>
         <TextInput id="location" name="location" label="Location" />
-      </div>
-      <div className={styles.fields_group}>
+      </Box>
+      <Box className={styles.fields_group}>
         <TextInput id="stationName" name="stationName" label="Station name" />
-      </div>
+      </Box>
     </CreateDialog>
   );
 };

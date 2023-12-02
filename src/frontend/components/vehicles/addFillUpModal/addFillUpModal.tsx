@@ -36,7 +36,7 @@ export const AddFillUpModal = () => {
   return (
     <CreateDialog DataValidation={FuelDataValidation} buttonText="Add fillup" buttonColor="primary" title="Add new fillup" onSubmit={onSubmit}>
       <div className={styles.fields_group}>
-        <DateInput label="Date (optional)" name="date" maxDate={new Date()} />
+        <DateInput label="Date" name="date" maxDate={new Date()} />
       </div>
       <div className={styles.fields_group}>
         <TextInput id="drivenKm" name="drivenKm" label="Driven KM" type="number" inputProps={{ step: 0.01 }} />
@@ -52,6 +52,9 @@ export const AddFillUpModal = () => {
       </div>
       <div className={styles.fields_group}>
         <TextInput id="stationName" name="stationName" label="Station name" />
+      </div>
+      <div className={styles.fields_group}>
+        <TextInput id="note" name="note" label="Note" />
       </div>
     </CreateDialog>
   );

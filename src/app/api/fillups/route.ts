@@ -16,6 +16,7 @@ interface PostBodyFillup {
   location: string;
   stationName: string;
   vehicleId: string;
+  note?: string;
 }
 
 export async function POST(request: Request) {
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
     return NextResponse.json(createDefaultResponse({}, false, "Unauthorised"), { status: 401 });
   }
 
-  const { date, drivenKm, litersFilled, location, cost, stationName, vehicleId }: PostBodyFillup = await request.json();
+  const { date, drivenKm, litersFilled, location, cost, stationName, vehicleId, note }: PostBodyFillup = await request.json();
   const vehicle = await FindVehicleById(vehicleId);
 
   if (!vehicle) {
@@ -45,6 +46,7 @@ export async function POST(request: Request) {
     station: stationName,
     vehicleId,
     efficiency: drivenKm / litersFilled,
+    note: note ?? "",
   });
 
   const newOdo = drivenKm + (Number(vehicle.odometer) ?? 0);

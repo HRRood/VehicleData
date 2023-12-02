@@ -2,7 +2,6 @@ import { SelectedVehicleAtom } from "@/frontend/atoms/selectedVehicleAtom";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 import { AddFillUpModal } from "./addFillUpModal/addFillUpModal";
-import { AddTripModal } from "./addTripModal/addTripModal";
 import { Vehicle } from "@/frontend/hooks/useVehicles";
 
 interface VehicleCardProps {
@@ -40,7 +39,6 @@ export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
 
         <div style={{ margin: "5px 0", display: "flex", justifyContent: "space-between" }}>
           <AddFillUpModal />
-          <AddTripModal />
         </div>
       </CardContent>
     </Card>

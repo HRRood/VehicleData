@@ -1,16 +1,17 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { ThemeHOC } from "../frontend/wrappers/themeHOC";
-import { Navbar } from "@/frontend/components/layout/navbar/navbar";
-import { AuthWrapper } from "../frontend/wrappers/AuthWrapper";
-import { JotaiWrapper } from "@/frontend/wrappers/JotaiWrapper";
+import './globals.css';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { ThemeHOC } from '../frontend/wrappers/themeHOC';
+import { Navbar } from '@/frontend/components/layout/navbar/navbar';
+import { AuthWrapper } from '../frontend/wrappers/AuthWrapper';
+import { JotaiWrapper } from '@/frontend/wrappers/JotaiWrapper';
+import { Box } from '@mui/material';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "HRR Data Dashboard",
-  description: "A place for a dashboard for anything",
+  title: 'HRR Data Dashboard',
+  description: 'A place for a dashboard for anything',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -21,7 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AuthWrapper>
             <ThemeHOC>
               <Navbar />
-              <main>{children}</main>
+              <main>
+                <Box sx={{ maxWidth: '1200px', margin: 'auto' }}>{children}</Box>
+              </main>
             </ThemeHOC>
           </AuthWrapper>
         </JotaiWrapper>

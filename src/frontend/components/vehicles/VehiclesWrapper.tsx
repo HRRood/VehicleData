@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 
 export const VehiclesWrapper = async () => {
   return (
-    <Box sx={{ maxWidth: '1300px', margin: 'auto' }}>
+    <Box sx={{ margin: 'auto' }}>
       <Box
         sx={{
           display: 'flex',
